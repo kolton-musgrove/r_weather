@@ -13,7 +13,13 @@
 			navigator.geolocation.getCurrentPosition(async (position) => {
 				currentLocation = [position.coords.latitude, position.coords.longitude];
 
-				weather = await getWeather(currentLocation[0], currentLocation[1]);
+				weather = await getWeather({
+					latitude: currentLocation[0],
+					longitude: currentLocation[1],
+					hourly: ['temperature_2m'],
+					daily: ['temperature_2m_max', 'temperature_2m_min']
+				});
+				console.log(weather);
 			});
 		}
 	});
@@ -25,7 +31,24 @@
 	{#if currentLocation}
 		<p>Current location: {currentLocation}</p>
 		{#if weather}
-			<p>Current weather: {weather}</p>
+			<h1>Daily Weather</h1>
+			<div class="flex">
+				<div>
+					{#each weather.daily.time as daily_time}
+						<p>{daily_time}</p>
+					{/each}
+				</div>
+				<div>
+					{#each weather.daily.temperature_2m_max as daily_max}
+						<p>{daily_max}</p>
+					{/each}
+				</div>
+				<div>
+					{#each weather.daily.temperature_2m_min as daily_min}
+						<p>{daily_min}</p>
+					{/each}
+				</div>
+			</div>
 		{/if}
 	{:else}
 		<p>Unable to get current location</p>
