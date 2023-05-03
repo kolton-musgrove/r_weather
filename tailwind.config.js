@@ -2,7 +2,11 @@
 export default {
 	content: ['./src/**/*.svelte'],
 	theme: {
-		extend: {}
+		extend: {
+			backgroundImage: {
+				overcast: "url('static/images/overcast.svg')"
+			}
+		}
 	},
 	plugins: []
 };

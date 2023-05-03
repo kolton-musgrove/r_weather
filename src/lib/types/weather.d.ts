@@ -57,7 +57,6 @@ type hourlyOptions =
 	| 'evapotranspiration'
 	| 'et0_fao_evapotranspiration'
 	| 'precipitation'
-	| 'precipitation'
 	| 'snowfall'
 	| 'precipitation_probability'
 	| 'rain'
@@ -91,7 +90,7 @@ export type weatherOptions = {
 	forecast_days?: IntRange<0, 17>;
 };
 
-export type Weather = {
+export type weatherResponse = {
 	latitude: number;
 	longitude: number;
 	elevation: number;
@@ -149,4 +148,19 @@ export type Weather = {
 		soil_moisture_27_81cm?: number[];
 		is_day?: number[];
 	};
+};
+
+export type weatherCategory =
+	| 'overcast'
+	| 'cloudy'
+	| 'clear'
+	| 'fog'
+	| 'drizzle'
+	| 'rain'
+	| 'freezing_rain'
+	| 'snow'
+	| 'thunderstorm';
+
+export type weatherCategoryToCode = {
+	[weatherCategory in weatherCategory]: number[];
 };
