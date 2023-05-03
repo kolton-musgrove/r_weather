@@ -13,9 +13,14 @@ export async function getWeather(options: weatherOptions): Promise<weatherRespon
 		}
 	});
 
-	const response = (await fetch(fullUrl.toString()).then((res) => res.json())) as weatherResponse;
+	const response = await fetch(fullUrl.toString());
 
-	return response;
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	} else {
+		const jsonResponse = await response.json();
+		return jsonResponse;
+	}
 }
 
 export function mapWeatherCodeToDescription(weatherCodes: number[], currentHour: number): string {

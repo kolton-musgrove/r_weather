@@ -12,7 +12,7 @@
 	let weatherSummary: string;
 	let weather: any;
 
-	$: headerBackgroundClass = `w-full ${weatherSummary}`;
+	$: headerBackgroundClass = `w-full flex-col flex items-center p-2 ${weatherSummary}`;
 	$: currentHour = getCurrentHour();
 
 	onMount(async () => {
@@ -50,7 +50,7 @@
 	<h1 class="font-bold text-xl mb-5 p-2">r_weather</h1>
 	{#if currentCoordinates}
 		{#if weather}
-			<header class="w-full flex-col flex items-center p-2">
+			<header class={headerBackgroundClass}>
 				<div class="w-full p-5">
 					<p class="text-2xl font-bold">{weather.hourly.temperature_2m[currentHour]}°F</p>
 					<p>
