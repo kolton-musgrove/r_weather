@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageServerData } from './$types';
 	import { onMount } from 'svelte';
-	import { getWeather, mapWeatherCodeToDescription } from '$lib/weather';
+	import { getWeather, mapWeatherCodeToDescription, getBackgroundImage } from '$lib/weather';
 	import { StatWidget } from '$lib/components';
 	import { getCurrentHour } from '$lib/time';
+	
 
 	export let data: PageServerData;
 
@@ -12,7 +13,8 @@
 	let weatherSummary: string;
 	let weather: any;
 
-	$: headerBackgroundClass = `w-full flex-col flex items-center p-2 ${weatherSummary}`;
+	$: headerBackgroundClass = `w-full flex-col flex items-center p-2 bg-[${headerBackgroundImage}]`; // FIGURING THIS OUT
+	$: headerBackgroundImage = getBackgroundImage(weatherSummary); // FIGURING THIS OUT, getBackgroundImage function located in weather.ts
 	$: currentHour = getCurrentHour();
 
 	onMount(async () => {
@@ -41,16 +43,19 @@
 				});
 
 				console.log(weather);
+				weatherSummary = mapWeatherCodeToDescription(weather.hourly.weathercode, currentHour); // THIS IS QUESTIONABLE
+				console.log(weatherSummary);
 			});
 		}
 	});
 </script>
 
 <body class="flex flex-col w-full items-center">
-	<h1 class="font-bold text-xl mb-5 p-2">r_weather</h1>
+	<h1 class="font-bold text-2xl mb-5 p-2">Weather App</h1>
+
 	{#if currentCoordinates}
 		{#if weather}
-			<header class={headerBackgroundClass}>
+			<header class={headerBackgroundClass} id="bg-img">
 				<div class="w-full p-5">
 					<p class="text-2xl font-bold">{weather.hourly.temperature_2m[currentHour]}°F</p>
 					<p>

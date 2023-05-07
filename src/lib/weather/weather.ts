@@ -55,3 +55,33 @@ export function mapWeatherCodeToDescription(weatherCodes: number[], currentHour:
 
 	throw new Error(`Unknown weather code: ${currentWeatherCode}`);
 }
+
+export function getBackgroundImage(wthr: string) {
+	
+	wthr = "Clear";
+
+	if (wthr == "Clear"){
+		return "url('https://images.unsplash.com/photo-1601297183305-6df142704ea2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Q2xlYXIlMjBTa3l8ZW58MHx8MHx8&auto=format&fit=crop&w=1200&q=60')";
+	}
+	else if (wthr == "Overcast") {
+		return "url(r_weather\static\images\overcast.jpg)";
+	}
+	else if (wthr == "Fog") {
+		return "url(r_weather\static\images\fog.jpg)";
+	}
+	else if (wthr == "Drizzle") {
+		return "url(r_weather\static\images\rain.jpg)";
+	}
+	else if (wthr == "Freezing_rain") {
+		return "url(r_weather\static\images\freezingrain.jpg)";
+	}
+	else if (wthr == "Rain") {
+		return "url(r_weather\static\images\rain.jpg)";
+	}
+	else if (wthr == "Snow") {
+		return "url(r_weather\static\images\snow.jpg)";
+	}
+	else if (wthr == "Thunderstorm") {
+		return "url(r_weather\static\images\thunderstorm.jpg)";
+	}
+}
