@@ -148,6 +148,30 @@ export type weatherResponse = {
 		soil_moisture_27_81cm?: number[];
 		is_day?: number[];
 	};
+	daily: {
+		temperature_2m_max?: number[];
+		temperature_2m_min?: number[];
+		apparent_temperature_max?: number[];
+		apparent_temperature_min?: number[];
+		precipitation_sum?: number[];
+		rain_sum?: number[];
+		showers_sum?: number[];
+		snowfall_sum?: number[];
+		precipitation_hours?: number[];
+		precipitation_probability_max?: number[];
+		precipitation_probability_min?: number[];
+		precipitation_probability_mean?: number[];
+		weathercode?: number[];
+		sunrise?: string[];
+		sunset?: string[];
+		windspeed_10m_max?: number[];
+		windspeed_10m_min?: number[];
+		winddirection_10m_dominant?: number[];
+		shortwave_radiation_sum?: number[];
+		et0_fao_evapotranspiration?: number[];
+		uv_index_max?: number[];
+		uv_index_clear_sky_max?: number[];
+	};
 };
 
 export type weatherCategory =
