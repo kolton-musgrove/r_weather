@@ -11,7 +11,14 @@
 <div class="flex flex-row justify-start w-1/2 py-1">
 	<i class={iconClass} />
 	<div class="flex flex-col">
-		{#if typeof stat === 'number'}
+		{#if typeof stat === 'number' && statUnit === '%'}
+			<h1 class="font-bold">
+				{Number(stat / 100).toLocaleString(undefined, {
+					style: 'percent',
+					maximumFractionDigits: precision
+				})}
+			</h1>
+		{:else if typeof stat === 'number'}
 			<h1 class="font-bold">{stat.toPrecision(precision)}{statUnit}</h1>
 		{:else}
 			<h1 class="font-bold">{stat}{statUnit}</h1>
